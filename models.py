@@ -3,7 +3,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Float, Integer, DateTime
 
-db = SQLAlchemy()
+db = SQLAlchemy(session_options={"expire_on_commit": False})
 
 class Cupcake(db.Model):
     __tablename__ = "cupcakes"
@@ -26,5 +26,7 @@ class Cupcake(db.Model):
 ############## CONNECT DB ##############
 
 def connect_db(app):
-    db.app = app
-    db.init_app(app)
+    with app.app_context():
+        db.app = app
+        db.init_app(app)
+        db.create_all()

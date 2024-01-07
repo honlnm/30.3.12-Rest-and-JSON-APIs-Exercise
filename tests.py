@@ -34,6 +34,7 @@ class CupcakeViewsTestCase(TestCase):
         """Make demo data."""
         with app.app_context():
             Cupcake.query.delete()
+            db.session.commit()
 
         cupcake = Cupcake(**CUPCAKE_DATA)
         

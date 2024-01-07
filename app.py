@@ -11,7 +11,7 @@ def create_app(db_name, testing=False):
 
     load_dotenv()
     app.testing = testing
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cupcakes'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql:///{db_name}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = os.getenv('secret_key')
 

@@ -46,17 +46,24 @@ def create_app(db_name, testing=False):
         return (jsonify(cupcake=new_cupcake.serialize()), 201)
 
     @app.route('/api/cupcakes/<int:id>', methods=["PATCH"])
-    def single_cupcake_data(id):
+    def update_cupcake_data(id):
         cupcake = Cupcake.query.get_or_404(id)
-        db.session.query(Cupcake).filterby(id=id).update(request.json)
+        db.session.query(Cupcake).filter_by(id=id).update(request.json)
         db.session.commit()
         return jsonify(cupcake=cupcake.serialize())
+
+    @app.route('/api/cupcakes/<int:id>', methods=["DELETE"])
+    def delete_cupcake_data(id):
+        cupcake = Cupcake.query.get_or_404(id)
+        db.session.delete(cupcake)
+        db.session.commit()
+        return jsonify(message="deleted")
 
     return app
 
 ############## CREATE APP/CONNECT DB ##############
 
-if __name__ == 'main':
+if __name__ == '__main__':
     app = create_app('cupcakes')
     connect_db(app)
     app.run(debug=True)

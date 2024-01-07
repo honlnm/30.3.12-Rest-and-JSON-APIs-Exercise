@@ -1,5 +1,8 @@
-from app import app
-from models import db, Cupcake
+from app import create_app
+from models import db, connect_db, Cupcake
+
+app = create_app("cupcakes", testing=False)
+connect_db(app)
 
 with app.app_context():
     db.drop_all()

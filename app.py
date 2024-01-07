@@ -45,11 +45,18 @@ def create_app(db_name, testing=False):
 
         return (jsonify(cupcake=new_cupcake.serialize()), 201)
 
+    @app.route('/api/cupcakes/<int:id>', methods=["PATCH"])
+    def single_cupcake_data(id):
+        cupcake = Cupcake.query.get_or_404(id)
+        db.session.query(Cupcake).filterby(id=id).update(request.json)
+        db.session.commit()
+        return jsonify(cupcake=cupcake.serialize())
+
     return app
 
 ############## CREATE APP/CONNECT DB ##############
 
-if __name__ == '__main__':
+if __name__ == 'main':
     app = create_app('cupcakes')
     connect_db(app)
     app.run(debug=True)

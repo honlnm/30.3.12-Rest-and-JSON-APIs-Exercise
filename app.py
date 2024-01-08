@@ -17,6 +17,12 @@ def create_app(db_name, testing=False):
 
     ############## ROUTES ##############
 
+    @app.route('/')
+    def home():
+        cupcakes = Cupcake.query.all()
+        return render_template('index.html', cupcakes=cupcakes)
+    
+    
     @app.route('/api/cupcakes')
     def list_cupcakes():
         cupcakes = Cupcake.query.all()

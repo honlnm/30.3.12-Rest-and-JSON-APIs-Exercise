@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Cupcake List</h1>
+    <div>
+        <ul></ul>
+    </div>
+    <div>
+        <h1>Add a Cupcake</h1>
+        <form action="/api/cupcakes" method="post">
+            <label for="flavor">Flavor: </label>
+            <input type="text" id="flavor" name="flavor">
+            <br>
+            <label for="size">Size: </label>
+            <input type="text" id="size" name="size">
+            <br>
+            <label for="rating">Rating: </label>
+            <input type="float" id="rating" name="rating">
+            <br>
+            <label for="image">Image URL: </label>
+            <input type="url" id="image" name="image">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.js"
+        integrity="sha512-NF+M0CTEn9D9ENLJG/DxMiqAiaz3upEpfxyekwb+U2OG8JPJSh/bUgXToRtxoNW5A2ucCUCw7adbo3gU1ZdHUQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="static/app.js"></script>
+</body>
+
+</html>
